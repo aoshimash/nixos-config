@@ -7,6 +7,7 @@
     ./wofi.nix
     ./waybar.nix
     ./editors.nix
+    ./mako.nix
   ];
   home.username = "aoshima";
   home.homeDirectory = "/home/aoshima";
