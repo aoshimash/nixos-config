@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
   # Allow unfree packages (e.g. NVIDIA driver)
   nixpkgs.config.allowUnfree = true;
@@ -7,6 +7,7 @@
     ./hardware-configuration.nix
     ../../modules/nvidia.nix
     ../../modules/hyprland.nix
+    ../../modules/sops.nix
   ];
 
   # Bootloader
@@ -16,6 +17,25 @@
   # Networking
   networking.hostName = "desktop-01";
   networking.networkmanager.enable = true;
+  networking.networkmanager.ensureProfiles = {
+    environmentFiles = [ config.sops.secrets."wifi-env".path ];
+    profiles.home-wifi = {
+      connection = {
+        id = "home-wifi";
+        type = "wifi";
+      };
+      wifi = {
+        ssid = "tplink5g";
+        mode = "infrastructure";
+      };
+      wifi-security = {
+        key-mgmt = "wpa-psk";
+        psk = "$WIFI_PSK";
+      };
+      ipv4.method = "auto";
+      ipv6.method = "auto";
+    };
+  };
 
   # Bluetooth
   hardware.bluetooth.enable = true;
@@ -24,9 +44,14 @@
   time.timeZone = "Asia/Tokyo";
   i18n.defaultLocale = "ja_JP.UTF-8";
 
+  # Secrets
+  sops.secrets."user-password".neededForUsers = true;
+  sops.secrets."wifi-env" = { };
+
   # User account
   users.users.aoshima = {
     isNormalUser = true;
+    hashedPasswordFile = config.sops.secrets."user-password".path;
     extraGroups = [
       "wheel"
       "networkmanager"

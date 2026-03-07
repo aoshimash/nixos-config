@@ -1,0 +1,7 @@
+keys:
+  - &admin age1f32qxwkyny4ewlszamk5zuk55k33ncrn6gwpmn0rda49e89x6afq02w979
+creation_rules:
+  - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+      - age:
+          - *admin
