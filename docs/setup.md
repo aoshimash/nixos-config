@@ -15,7 +15,19 @@ git clone https://github.com/aoshimash/nixos-config.git
 cd nixos-config
 ```
 
-## Step 2: Apply the Configuration
+## Step 2: Set Up Secret Decryption Key
+
+The NixOS configuration depends on sops-nix secrets (e.g., user password, Wi-Fi credentials). The age decryption key must be in place before applying the configuration.
+
+Copy the age secret key to the NixOS machine (see [Secret Management](../README.md#secret-management) for how to generate one):
+
+```bash
+sudo mkdir -p /var/lib/sops-nix
+sudo cp keys.txt /var/lib/sops-nix/key.txt
+sudo chmod 600 /var/lib/sops-nix/key.txt
+```
+
+## Step 3: Apply the Configuration
 
 ```bash
 sudo nixos-rebuild switch --flake .#desktop-01
@@ -25,7 +37,7 @@ This will download all required packages and apply the full system configuration
 
 > **Note:** The first build may take a while as it fetches and builds all dependencies.
 
-## Step 3: Reboot
+## Step 4: Reboot
 
 After the configuration is applied, reboot the machine:
 
@@ -71,10 +83,6 @@ The Hyprland configuration in `home/hyprland.nix` ships with placeholder monitor
    ```bash
    sudo nixos-rebuild switch --flake .#desktop-01
    ```
-
-### Set Up Secret Management (sops-nix)
-
-Secret management uses sops-nix with age encryption. See the [Secret Management](../README.md#secret-management) section in the README for setup instructions.
 
 ## Troubleshooting
 
