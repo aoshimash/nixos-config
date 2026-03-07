@@ -15,6 +15,10 @@ My NixOS desktop configuration managed with Flakes.
 - Hyprland (tiling Wayland compositor)
 - sops-nix (secret management)
 
+## Documentation
+
+- [Setup Guide](docs/setup.md) — How to deploy this configuration on a NixOS machine
+
 ## Usage
 
 ```bash
