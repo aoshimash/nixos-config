@@ -17,8 +17,10 @@
       };
 
       "$mod" = "SUPER";
+      "$terminal" = "ghostty";
 
       bind = [
+        "$mod, Return, exec, $terminal"
         "$mod, Q, killactive"
         "$mod, M, exit"
         "$mod, V, togglefloating"
@@ -52,6 +54,15 @@
         "$mod SHIFT, 8, movetoworkspace, 8"
         "$mod SHIFT, 9, movetoworkspace, 9"
       ];
+    };
+  };
+
+  # Terminal emulator
+  programs.ghostty = {
+    enable = true;
+    settings = {
+      font-family = "HackGen35 Console NF";
+      font-size = 12;
     };
   };
 }
