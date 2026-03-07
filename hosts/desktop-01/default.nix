@@ -9,6 +9,7 @@
     ../../modules/hyprland.nix
     ../../modules/sops.nix
     ../../modules/fonts.nix
+    ../../modules/audio.nix
   ];
 
   # Bootloader
