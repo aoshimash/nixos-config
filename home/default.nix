@@ -31,6 +31,8 @@
 
   programs.zsh.enable = true;
 
+  programs.gh.enable = true;
+
   programs.git = {
     enable = true;
     userName = "Shuji Aoshima";
