@@ -50,8 +50,11 @@
   sops.secrets."wifi-env" = { };
 
   # User account
+  programs.zsh.enable = true;
+
   users.users.aoshima = {
     isNormalUser = true;
+    shell = pkgs.zsh;
     hashedPasswordFile = config.sops.secrets."user-password".path;
     extraGroups = [
       "wheel"
