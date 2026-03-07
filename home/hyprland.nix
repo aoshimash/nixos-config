@@ -17,10 +17,8 @@
       };
 
       "$mod" = "SUPER";
-      "$terminal" = "kitty";
 
       bind = [
-        "$mod, Return, exec, $terminal"
         "$mod, Q, killactive"
         "$mod, M, exit"
         "$mod, V, togglefloating"
@@ -56,7 +54,4 @@
       ];
     };
   };
-
-  # Terminal emulator
-  programs.kitty.enable = true;
 }
