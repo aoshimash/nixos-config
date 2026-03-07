@@ -1,4 +1,8 @@
 { pkgs, ... }:
+let
+  aqua = pkgs.callPackage ../pkgs/aqua.nix { };
+  freelens = pkgs.callPackage ../pkgs/freelens.nix { };
+in
 {
   imports = [
     ./browsers.nix
@@ -32,6 +36,40 @@
     go
     gopls
     playwright-driver.browsers
+
+    # Python
+    uv
+    ruff
+
+    # Kubernetes
+    kubectl
+    k9s
+    freelens
+
+    # Containers
+    ctop
+
+    # AI CLI
+    codex
+    gemini-cli
+
+    # Shell productivity
+    fzf
+    bat
+    eza
+    zoxide
+    direnv
+    lazygit
+    delta
+
+    # System info
+    dust
+    duf
+
+    # Utilities
+    yq
+    rsync
+    aqua
   ];
 
   home.file.".claude/CLAUDE.md".source = ./dotfiles/claude/CLAUDE.md;
