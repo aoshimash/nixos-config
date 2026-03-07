@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   imports = [
     ./hyprland.nix
@@ -8,6 +8,24 @@
   home.username = "aoshima";
   home.homeDirectory = "/home/aoshima";
   home.stateVersion = "25.05";
+
+  home.packages = with pkgs; [
+    # CLI tools
+    curl
+    unzip
+    tree
+    htop
+    ripgrep
+    fd
+    jq
+    file
+    which
+
+    # Development tools
+    tmux
+    llvmPackages.clang
+    nodejs
+  ];
 
   programs.zsh.enable = true;
 
