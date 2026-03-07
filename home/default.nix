@@ -24,7 +24,6 @@
     # Development tools
     tmux
     llvmPackages.clang
-    nodejs
   ];
 
   programs.zsh.enable = true;
