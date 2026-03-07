@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 let
   aqua = pkgs.callPackage ../pkgs/aqua.nix { };
   freelens = pkgs.callPackage ../pkgs/freelens.nix { };
@@ -12,6 +12,8 @@ in
     ./waybar.nix
     ./editors.nix
     ./mako.nix
+    ./shell.nix
+    ./tmux.nix
   ];
   home.username = "aoshima";
   home.homeDirectory = "/home/aoshima";
@@ -30,7 +32,6 @@ in
     which
 
     # Development tools
-    tmux
     llvmPackages.clang
     claude-code
     go
@@ -53,12 +54,9 @@ in
     codex
     gemini-cli
 
-    # Shell productivity
-    fzf
+    # Shell productivity (fzf, zoxide, direnv are in shell.nix via programs.*)
     bat
     eza
-    zoxide
-    direnv
     lazygit
     delta
 
@@ -73,12 +71,28 @@ in
   ];
 
   home.file.".claude/CLAUDE.md".source = ./dotfiles/claude/CLAUDE.md;
+  home.file.".claude/settings.json".text = builtins.toJSON {
+    enabledPlugins = {
+      "gopls-lsp@claude-plugins-official" = true;
+    };
+    alwaysThinkingEnabled = true;
+    env = {
+      CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = "1";
+    };
+    teammateMode = "in-process";
+    statusLine = {
+      type = "command";
+      command = "sh ${config.home.homeDirectory}/.claude/statusline-command.sh";
+    };
+  };
+  home.file.".claude/statusline-command.sh" = {
+    source = ./dotfiles/claude/statusline-command.sh;
+    executable = true;
+  };
 
   home.sessionVariables = {
     PLAYWRIGHT_BROWSERS_PATH = "${pkgs.playwright-driver.browsers}";
   };
-
-  programs.zsh.enable = true;
 
   programs.gh = {
     enable = true;
