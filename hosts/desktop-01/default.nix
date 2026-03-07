@@ -29,7 +29,7 @@
         mode = "infrastructure";
       };
       wifi-security = {
-        key-mgmt = "wpa-psk";
+        key-mgmt = "sae";
         psk = "$WIFI_PSK";
       };
       ipv4.method = "auto";
