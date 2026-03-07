@@ -29,9 +29,16 @@
     tmux
     llvmPackages.clang
     claude-code
+    go
+    gopls
+    playwright-driver.browsers
   ];
 
   home.file.".claude/CLAUDE.md".source = ./dotfiles/claude/CLAUDE.md;
+
+  home.sessionVariables = {
+    PLAYWRIGHT_BROWSERS_PATH = "${pkgs.playwright-driver.browsers}";
+  };
 
   programs.zsh.enable = true;
 
