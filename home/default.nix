@@ -3,6 +3,7 @@
   imports = [
     ./hyprland.nix
     ./fcitx5.nix
+    ./wofi.nix
   ];
   home.username = "aoshima";
   home.homeDirectory = "/home/aoshima";

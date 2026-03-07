@@ -20,6 +20,7 @@
       "$terminal" = "kitty";
 
       bind = [
+        "$mod, D, exec, wofi --show drun"
         "$mod, Return, exec, $terminal"
         "$mod, Q, killactive"
         "$mod, M, exit"
