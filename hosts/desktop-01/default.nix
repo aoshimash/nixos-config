@@ -57,6 +57,7 @@
     extraGroups = [
       "wheel"
       "networkmanager"
+      "docker"
     ];
   };
 
@@ -66,6 +67,9 @@
     git
     wget
   ];
+
+  # Docker
+  virtualisation.docker.enable = true;
 
   # Dvorak keyboard layout for TTY
   console.keyMap = "dvorak";
