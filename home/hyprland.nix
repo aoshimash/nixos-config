@@ -15,6 +15,11 @@
         kb_variant = "dvorak";
       };
 
+      exec-once = [
+        "waybar"
+        "blueman-applet"
+      ];
+
       "$mod" = "SUPER";
       "$terminal" = "ghostty";
 
