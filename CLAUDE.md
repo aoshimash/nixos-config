@@ -36,7 +36,10 @@ nix fmt
 # Lint & check
 nix flake check
 
-# Build without applying (CI does this on Linux)
+# Evaluate NixOS config without building (CI does this on Linux)
+nix eval .#nixosConfigurations.desktop-01.config.system.build.toplevel
+
+# Build without applying (run on NixOS machine)
 nix build .#nixosConfigurations.desktop-01.config.system.build.toplevel
 
 # Apply on NixOS machine
@@ -82,10 +85,10 @@ sops secrets/secrets.yaml
 
 - Format check (`nixfmt --check`)
 - Secret detection (`gitleaks`)
-- NixOS build check (Linux runner)
+- NixOS config check (`nix flake check` + `nix eval`)
 
 ## Testing Strategy
 
 - **Mac (editing)**: format, lint, gitleaks, `nix flake check` (partial)
-- **CI (Linux)**: full build check
-- **NixOS machine**: `nixos-rebuild switch` (final apply)
+- **CI (Linux)**: config eval check (`nix flake check` + `nix eval`)
+- **NixOS machine**: full build (`nix build`) + `nixos-rebuild switch` (final apply)

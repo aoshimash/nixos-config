@@ -26,11 +26,11 @@ jobs:
           aqua_version: v2.45.0
       - run: gitleaks detect
 
-  build:
-    name: NixOS build check
+  nixos-config:
+    name: NixOS config check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: DeterminateSystems/nix-installer-action@main
-      - uses: DeterminateSystems/magic-nix-cache-action@main
-      - run: nix build .#nixosConfigurations.desktop-01.config.system.build.toplevel
+      - run: nix flake check
+      - run: nix eval .#nixosConfigurations.desktop-01.config.system.build.toplevel
