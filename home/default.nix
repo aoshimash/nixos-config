@@ -24,6 +24,7 @@
     # Development tools
     tmux
     llvmPackages.clang
+    claude-code
   ];
 
   programs.zsh.enable = true;
