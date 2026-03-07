@@ -54,8 +54,6 @@
     nix-direnv.enable = true;
   };
 
-  programs.nix-index = {
-    enable = true;
-    enableZshIntegration = true;
-  };
+  # nix-index is enabled via nix-index-database in flake.nix
+  programs.nix-index-database.comma.enable = true;
 }

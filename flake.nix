@@ -11,6 +11,10 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -18,6 +22,7 @@
       nixpkgs,
       home-manager,
       sops-nix,
+      nix-index-database,
       ...
     }:
     let
@@ -34,7 +39,12 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.backupFileExtension = "hm-backup";
-            home-manager.users.aoshima = import ./home;
+            home-manager.users.aoshima = {
+              imports = [
+                nix-index-database.homeModules.nix-index
+                ./home
+              ];
+            };
           }
         ];
       };
