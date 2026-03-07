@@ -38,7 +38,7 @@
 
   programs.git = {
     enable = true;
-    userName = "Shuji Aoshima";
-    userEmail = "47586723+aoshimash@users.noreply.github.com";
+    settings.user.name = "Shuji Aoshima";
+    settings.user.email = "47586723+aoshimash@users.noreply.github.com";
   };
 }
