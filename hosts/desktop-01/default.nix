@@ -25,7 +25,7 @@
         type = "wifi";
       };
       wifi = {
-        ssid = "tplink5g";
+        ssid = "$WIFI_SSID";
         mode = "infrastructure";
       };
       wifi-security = {
