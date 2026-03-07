@@ -3,6 +3,7 @@
   # OpenSSH server
   services.openssh = {
     enable = true;
+    openFirewall = false;
     settings = {
       PasswordAuthentication = false;
       PermitRootLogin = "no";
@@ -19,10 +20,12 @@
     extraCommands = ''
       iptables -I nixos-fw 1 -p tcp --dport 22 -s 192.168.0.0/24 -j nixos-fw-accept
       iptables -I nixos-fw 2 -p tcp --dport 22 -j nixos-fw-log-refuse
+      ip6tables -I nixos-fw 1 -p tcp --dport 22 -j nixos-fw-log-refuse
     '';
     extraStopCommands = ''
       iptables -D nixos-fw -p tcp --dport 22 -s 192.168.0.0/24 -j nixos-fw-accept || true
       iptables -D nixos-fw -p tcp --dport 22 -j nixos-fw-log-refuse || true
+      ip6tables -D nixos-fw -p tcp --dport 22 -j nixos-fw-log-refuse || true
     '';
   };
 }
