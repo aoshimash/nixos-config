@@ -10,7 +10,7 @@ let
 
   src = fetchurl {
     url = "https://github.com/aquaproj/aqua/releases/download/v${version}/aqua_linux_amd64.tar.gz";
-    hash = "sha256-iqkBMc8Uiqv3uIXXqltST0Fr5kBTB5YxgFqkGsApXvM=";
+    hash = "sha256-KMZjNSZUUawNNKNk5Xg25tc+9Vy7lpgmXOPuK5fxx8A=";
   };
 in
 stdenvNoCC.mkDerivation {
