@@ -5,6 +5,7 @@
     ./hyprland.nix
     ./fcitx5.nix
     ./wofi.nix
+    ./editors.nix
   ];
   home.username = "aoshima";
   home.homeDirectory = "/home/aoshima";
