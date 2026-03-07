@@ -10,6 +10,7 @@
     ../../modules/sops.nix
     ../../modules/fonts.nix
     ../../modules/audio.nix
+    ../../modules/bluetooth.nix
   ];
 
   # Bootloader
@@ -38,9 +39,6 @@
       ipv6.method = "auto";
     };
   };
-
-  # Bluetooth
-  hardware.bluetooth.enable = true;
 
   # Timezone and locale
   time.timeZone = "Asia/Tokyo";

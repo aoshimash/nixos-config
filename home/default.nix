@@ -5,6 +5,7 @@
     ./hyprland.nix
     ./fcitx5.nix
     ./wofi.nix
+    ./waybar.nix
     ./editors.nix
   ];
   home.username = "aoshima";
