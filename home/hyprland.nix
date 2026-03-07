@@ -17,7 +17,7 @@
       };
 
       "$mod" = "SUPER";
-      "$terminal" = "kitty";
+      "$terminal" = "ghostty";
 
       bind = [
         "$mod, Return, exec, $terminal"
@@ -58,5 +58,11 @@
   };
 
   # Terminal emulator
-  programs.kitty.enable = true;
+  programs.ghostty = {
+    enable = true;
+    settings = {
+      font-family = "HackGen35 Console NF";
+      font-size = 12;
+    };
+  };
 }
