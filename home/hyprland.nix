@@ -4,11 +4,10 @@
     enable = true;
     settings = {
       # Monitor layout (left to right): JAPANNEXT 2K → DELL 2K → LG 4K
-      # TODO: Replace PLACEHOLDER-* with actual output names from `hyprctl monitors`
       monitor = [
-        "PLACEHOLDER-1, 2560x1440@144, 0x0, 1" # JAPANNEXT (left)
-        "PLACEHOLDER-2, 2560x1440@144, 2560x0, 1" # DELL G3223D (center)
-        "PLACEHOLDER-3, 3840x2160@60, 5120x0, 1.5" # LG HDR 4K (right)
+        "DP-6, 2560x1440@144, 0x0, 1" # JAPANNEXT (left)
+        "DP-9, 2560x1440@144, 2560x0, 1" # DELL G3223D (center)
+        "DP-8, 3840x2160@60, 5120x0, 1.5" # LG HDR 4K (right)
       ];
 
       input = {
