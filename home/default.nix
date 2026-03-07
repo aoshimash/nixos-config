@@ -30,6 +30,8 @@
     claude-code
   ];
 
+  home.file.".claude/CLAUDE.md".source = ./dotfiles/claude/CLAUDE.md;
+
   programs.zsh.enable = true;
 
   programs.gh = {
