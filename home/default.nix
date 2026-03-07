@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./browsers.nix
     ./hyprland.nix
     ./fcitx5.nix
     ./wofi.nix
