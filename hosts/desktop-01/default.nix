@@ -65,6 +65,7 @@
     vim
     git
     wget
+    nodejs
   ];
 
   # Docker
