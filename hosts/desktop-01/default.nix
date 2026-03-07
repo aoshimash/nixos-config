@@ -11,6 +11,7 @@
     ../../modules/fonts.nix
     ../../modules/audio.nix
     ../../modules/bluetooth.nix
+    ../../modules/ssh.nix
   ];
 
   # Bootloader
