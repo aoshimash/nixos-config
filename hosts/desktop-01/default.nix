@@ -1,5 +1,8 @@
 { pkgs, ... }:
 {
+  # Allow unfree packages (e.g. NVIDIA driver)
+  nixpkgs.config.allowUnfree = true;
+
   imports = [
     ./hardware-configuration.nix
     ../../modules/nvidia.nix
