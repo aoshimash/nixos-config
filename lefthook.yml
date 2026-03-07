@@ -1,0 +1,7 @@
+pre-commit:
+  commands:
+    nixfmt-check:
+      glob: "*.nix"
+      run: nixfmt --check {staged_files}
+    gitleaks:
+      run: gitleaks protect --staged

@@ -48,7 +48,8 @@ sops secrets/secrets.yaml
 
 ## Tool Management
 
-- Use **aqua** (`aqua.yaml`) for CLI tools (nixfmt, gitleaks, lefthook, etc.)
+- Use **aqua** (`aqua.yaml`) for CLI tools (gitleaks, lefthook, etc.)
+- **nixfmt** is not in the aqua registry — install via `brew install nixfmt` (macOS) or Nix
 - Keep tool versions consistent between local and CI
 
 ## Coding Conventions
