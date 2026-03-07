@@ -40,9 +40,10 @@ sudo dd if=nixos-minimal.iso of=/dev/rdiskN bs=4m status=progress
 ## Step 2: Boot from USB
 
 1. Insert the USB drive into the target machine.
-2. Enter the BIOS/UEFI boot menu (typically by pressing F12, F2, or Del during startup).
-3. Select the USB drive as the boot device (UEFI mode).
-4. NixOS will boot into a minimal environment with a root shell.
+2. Enter the BIOS/UEFI settings and **disable Secure Boot** (typically under Security or Boot tab). NixOS minimal ISO does not support Secure Boot.
+3. Enter the BIOS/UEFI boot menu (typically by pressing F12, F2, or Del during startup).
+4. Select the USB drive as the boot device (UEFI mode).
+5. NixOS will boot into a minimal environment with a root shell.
 
 ## Step 3: Connect to the Network
 
@@ -77,25 +78,25 @@ This configuration uses UEFI with systemd-boot. Create a GPT partition table wit
 2. Partition the disk (example using `/dev/nvme0n1`):
 
    ```bash
-   parted /dev/nvme0n1 -- mklabel gpt
-   parted /dev/nvme0n1 -- mkpart root ext4 512MB 100%
-   parted /dev/nvme0n1 -- mkpart ESP fat32 1MB 512MB
-   parted /dev/nvme0n1 -- set 2 esp on
+   sudo parted /dev/nvme0n1 -- mklabel gpt
+   sudo parted /dev/nvme0n1 -- mkpart root ext4 512MB 100%
+   sudo parted /dev/nvme0n1 -- mkpart ESP fat32 1MB 512MB
+   sudo parted /dev/nvme0n1 -- set 2 esp on
    ```
 
 3. Format the partitions:
 
    ```bash
-   mkfs.ext4 -L nixos /dev/nvme0n1p1
-   mkfs.fat -F 32 -n boot /dev/nvme0n1p2
+   sudo mkfs.ext4 -L nixos /dev/nvme0n1p1
+   sudo mkfs.fat -F 32 -n boot /dev/nvme0n1p2
    ```
 
 4. Mount the partitions:
 
    ```bash
-   mount /dev/disk/by-label/nixos /mnt
-   mkdir -p /mnt/boot
-   mount /dev/disk/by-label/boot /mnt/boot
+   sudo mount /dev/disk/by-label/nixos /mnt
+   sudo mkdir -p /mnt/boot
+   sudo mount /dev/disk/by-label/boot /mnt/boot
    ```
 
 ## Step 5: Generate hardware-configuration.nix
@@ -103,7 +104,7 @@ This configuration uses UEFI with systemd-boot. Create a GPT partition table wit
 1. Generate the hardware configuration for the target machine:
 
    ```bash
-   nixos-generate-config --root /mnt
+   sudo nixos-generate-config --root /mnt
    ```
 
    This creates `/mnt/etc/nixos/hardware-configuration.nix` with the correct hardware settings for your machine.
@@ -111,14 +112,13 @@ This configuration uses UEFI with systemd-boot. Create a GPT partition table wit
 2. Clone this repository:
 
    ```bash
-   nix-shell -p git
-   git clone https://github.com/aoshimash/nixos-config.git /mnt/etc/nixos-config
+   sudo nix-shell -p git --run "git clone https://github.com/aoshimash/nixos-config.git /mnt/etc/nixos-config"
    ```
 
 3. Replace the placeholder `hardware-configuration.nix` with the generated one:
 
    ```bash
-   cp /mnt/etc/nixos/hardware-configuration.nix /mnt/etc/nixos-config/hosts/desktop-01/hardware-configuration.nix
+   sudo cp /mnt/etc/nixos/hardware-configuration.nix /mnt/etc/nixos-config/hosts/desktop-01/hardware-configuration.nix
    ```
 
    > **Important:** After installation, commit this file to the repository so future rebuilds use the correct hardware configuration.
@@ -132,9 +132,9 @@ On your Mac, enable **Remote Login** (System Settings > General > Sharing > Remo
 On the NixOS installer, copy the key from your Mac:
 
 ```bash
-mkdir -p /mnt/var/lib/sops-nix
-scp <mac-user>@<Mac-IP>:~/.config/sops/age/keys.txt /mnt/var/lib/sops-nix/key.txt
-chmod 600 /mnt/var/lib/sops-nix/key.txt
+sudo mkdir -p /mnt/var/lib/sops-nix
+sudo scp <mac-user>@<Mac-IP>:~/.config/sops/age/keys.txt /mnt/var/lib/sops-nix/key.txt
+sudo chmod 600 /mnt/var/lib/sops-nix/key.txt
 ```
 
 > **Note:** The key must be at `/mnt/var/lib/sops-nix/key.txt` (under `/mnt`) during installation. After boot, it will be at `/var/lib/sops-nix/key.txt` as configured in `modules/sops.nix`.
@@ -144,7 +144,7 @@ chmod 600 /mnt/var/lib/sops-nix/key.txt
 Run the installation from the cloned repository:
 
 ```bash
-nixos-install --flake /mnt/etc/nixos-config#desktop-01
+sudo nixos-install --flake /mnt/etc/nixos-config#desktop-01
 ```
 
 You will be prompted to set the root password. The user password for `aoshima` is managed by sops-nix and will be set automatically.
@@ -161,8 +161,21 @@ Remove the USB drive when prompted or during the reboot.
 
 ## Next Steps
 
-After booting into the installed system, follow the [Setup Guide](setup.md) for post-install configuration:
+After booting into the installed system:
 
-- Applying configuration updates with `nixos-rebuild switch`
-- Identifying and configuring monitor output names for Hyprland
-- Troubleshooting common issues
+1. Clone the repository to your home directory for day-to-day use:
+
+   ```bash
+   cd ~
+   git clone https://github.com/aoshimash/nixos-config.git
+   ```
+
+   The `/etc/nixos-config` clone from installation is no longer needed and can be removed:
+
+   ```bash
+   sudo rm -rf /etc/nixos-config
+   ```
+
+2. Follow the [Setup Guide](setup.md) for post-install configuration:
+   - Identifying and configuring monitor output names for Hyprland
+   - Troubleshooting common issues
