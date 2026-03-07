@@ -1,5 +1,8 @@
 { ... }:
 {
+  imports = [
+    ./hyprland.nix
+  ];
   home.username = "aoshima";
   home.homeDirectory = "/home/aoshima";
   home.stateVersion = "25.05";

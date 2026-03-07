@@ -6,6 +6,7 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules/nvidia.nix
+    ../../modules/hyprland.nix
   ];
 
   # Bootloader
@@ -38,6 +39,9 @@
     git
     wget
   ];
+
+  # Dvorak keyboard layout for TTY
+  console.keyMap = "dvorak";
 
   system.stateVersion = "25.05";
 }
