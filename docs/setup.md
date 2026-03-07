@@ -5,8 +5,8 @@ This guide walks through the complete process of deploying the nixos-config on a
 ## Prerequisites
 
 - A machine running NixOS (with a standard installation completed)
+- **Wired (Ethernet) connection** — Wi-Fi credentials are managed by sops-nix and won't be available until after the first successful build
 - Git installed on the NixOS machine
-- Internet access for fetching Nix packages
 
 ## Step 1: Clone the Repository
 
