@@ -8,6 +8,7 @@
     ../../modules/nvidia.nix
     ../../modules/hyprland.nix
     ../../modules/sops.nix
+    ../../modules/fonts.nix
   ];
 
   # Bootloader

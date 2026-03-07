@@ -58,5 +58,11 @@
   };
 
   # Terminal emulator
-  programs.kitty.enable = true;
+  programs.kitty = {
+    enable = true;
+    font = {
+      name = "HackGen35 Console NF";
+      size = 12;
+    };
+  };
 }
