@@ -27,6 +27,7 @@
       input = {
         kb_layout = "us";
         kb_variant = "dvorak";
+        natural_scroll = true;
       };
 
       exec-once = [
