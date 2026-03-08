@@ -1,5 +1,7 @@
-{ ... }:
+{ pkgs, ... }:
 {
+  home.packages = [ pkgs.pavucontrol ];
+
   programs.waybar = {
     enable = true;
     settings = {
@@ -44,6 +46,7 @@
             ];
           };
           on-click = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+          on-click-right = "pavucontrol";
         };
 
         bluetooth = {
