@@ -82,12 +82,19 @@ in
         "$mod SHIFT, 2, movewindow, mon:DP-9" # center
         "$mod SHIFT, 3, movewindow, mon:DP-8" # right
 
-        # Close all windows on active workspace
+        # Cycle windows on active workspace
+        "$mod, Tab, cyclenext"
+        "$mod SHIFT, Tab, cyclenext, prev"
+
+        # Cycle workspaces on active monitor
+        "CTRL, Right, workspace, m+1"
+        "CTRL, Left, workspace, m-1"
+
+        # Delete workspace (close all windows)
         "$mod SHIFT, W, exec, ${closeAllWindows}"
 
-        # Cycle windows on active monitor
-        "CTRL, Right, cyclenext"
-        "CTRL, Left, cyclenext, prev"
+        # Add empty workspace on current monitor
+        "$mod SHIFT, N, workspace, emptym"
       ];
     };
   };
