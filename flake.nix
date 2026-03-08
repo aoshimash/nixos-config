@@ -15,6 +15,10 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    xremap-flake = {
+      url = "github:xremap/nix-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -23,6 +27,7 @@
       home-manager,
       sops-nix,
       nix-index-database,
+      xremap-flake,
       ...
     }:
     let
@@ -34,6 +39,7 @@
         modules = [
           ./hosts/desktop-01
           sops-nix.nixosModules.sops
+          xremap-flake.nixosModules.default
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;

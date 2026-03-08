@@ -32,12 +32,17 @@
         ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
       ];
 
+      bindm = [
+        "$mod, mouse:272, movewindow"
+        "$mod, mouse:273, resizewindow"
+      ];
+
       bind = [
         "$mod, D, exec, wofi --show drun"
         "$mod, Return, exec, $terminal"
-        "$mod, Q, killactive"
+        "$mod, W, killactive"
         "$mod, M, exit"
-        "$mod, V, togglefloating"
+        "$mod, T, togglefloating"
         "$mod, F, fullscreen"
 
         # Move focus
