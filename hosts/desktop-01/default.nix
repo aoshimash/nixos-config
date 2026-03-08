@@ -13,6 +13,9 @@
     ../../modules/bluetooth.nix
     ../../modules/ssh.nix
     ../../modules/xremap.nix
+    ../../modules/google-drive.nix
+    ../../modules/logiops.nix
+    ../../modules/scanner.nix
   ];
 
   # Bootloader
