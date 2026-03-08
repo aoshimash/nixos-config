@@ -88,15 +88,20 @@ in
     in
     config.lib.dag.entryAfter [ "writeBoundary" ] ''
       settings_file="${config.home.homeDirectory}/.claude/settings.json"
+      installed_plugins_file="${config.home.homeDirectory}/.claude/plugins/installed_plugins.json"
       base_settings='${baseSettings}'
       mkdir -p "$(dirname "$settings_file")"
-      if [ -f "$settings_file" ]; then
-        existing_plugins=$(${pkgs.jq}/bin/jq -c '.enabledPlugins // {}' "$settings_file")
-        echo "$base_settings" | ${pkgs.jq}/bin/jq --argjson plugins "$existing_plugins" '. + {enabledPlugins: $plugins}' > "$settings_file.tmp"
-        mv "$settings_file.tmp" "$settings_file"
+
+      # Build enabledPlugins from installed_plugins.json
+      if [ -f "$installed_plugins_file" ]; then
+        installed_plugins=$(${pkgs.jq}/bin/jq -c '[.plugins // {} | keys[] | {(.): true}] | add // {}' "$installed_plugins_file")
       else
-        echo "$base_settings" > "$settings_file"
+        installed_plugins='{}'
       fi
+
+      # Merge base settings with installed plugins
+      echo "$base_settings" | ${pkgs.jq}/bin/jq --argjson plugins "$installed_plugins" '. + {enabledPlugins: $plugins}' > "$settings_file.tmp"
+      mv "$settings_file.tmp" "$settings_file"
     '';
 
   home.file.".claude/statusline-command.sh" = {
