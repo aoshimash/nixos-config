@@ -7,7 +7,7 @@
 
     style = ''
       * {
-        font-family: "JetBrainsMono Nerd Font", monospace;
+        font-family: "HackGen35 Console NF", monospace;
         font-size: 13px;
         min-height: 0;
       }
