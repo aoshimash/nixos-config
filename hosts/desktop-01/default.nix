@@ -14,6 +14,10 @@
     ../../modules/ssh.nix
     ../../modules/xremap.nix
     ../../modules/keyring.nix
+    ../../modules/google-drive.nix
+    ../../modules/logiops.nix
+    ../../modules/scanner.nix
+    ../../modules/tailscale.nix
   ];
 
   # Bootloader
