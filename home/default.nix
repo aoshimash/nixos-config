@@ -71,20 +71,34 @@ in
   ];
 
   home.file.".claude/CLAUDE.md".source = ./dotfiles/claude/CLAUDE.md;
-  home.file.".claude/settings.json".text = builtins.toJSON {
-    enabledPlugins = {
-      "gopls-lsp@claude-plugins-official" = true;
-    };
-    alwaysThinkingEnabled = true;
-    env = {
-      CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = "1";
-    };
-    teammateMode = "in-process";
-    statusLine = {
-      type = "command";
-      command = "sh ${config.home.homeDirectory}/.claude/statusline-command.sh";
-    };
-  };
+
+  home.activation.claudeSettings =
+    let
+      baseSettings = builtins.toJSON {
+        alwaysThinkingEnabled = true;
+        env = {
+          CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = "1";
+        };
+        teammateMode = "in-process";
+        statusLine = {
+          type = "command";
+          command = "sh ${config.home.homeDirectory}/.claude/statusline-command.sh";
+        };
+      };
+    in
+    config.lib.dag.entryAfter [ "writeBoundary" ] ''
+      settings_file="${config.home.homeDirectory}/.claude/settings.json"
+      base_settings='${baseSettings}'
+      mkdir -p "$(dirname "$settings_file")"
+      if [ -f "$settings_file" ]; then
+        existing_plugins=$(${pkgs.jq}/bin/jq -c '.enabledPlugins // {}' "$settings_file")
+        echo "$base_settings" | ${pkgs.jq}/bin/jq --argjson plugins "$existing_plugins" '. + {enabledPlugins: $plugins}' > "$settings_file.tmp"
+        mv "$settings_file.tmp" "$settings_file"
+      else
+        echo "$base_settings" > "$settings_file"
+      fi
+    '';
+
   home.file.".claude/statusline-command.sh" = {
     source = ./dotfiles/claude/statusline-command.sh;
     executable = true;
