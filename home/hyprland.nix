@@ -11,6 +11,19 @@
         "DP-8, 3840x2160@60, 5120x0, 1.5" # LG HDR 4K (right)
       ];
 
+      # Workspace-to-monitor assignment (round-robin: left → center → right)
+      workspace = [
+        "1, monitor:DP-6, default:true"
+        "2, monitor:DP-9, default:true"
+        "3, monitor:DP-8, default:true"
+        "4, monitor:DP-6"
+        "5, monitor:DP-9"
+        "6, monitor:DP-8"
+        "7, monitor:DP-6"
+        "8, monitor:DP-9"
+        "9, monitor:DP-8"
+      ];
+
       input = {
         kb_layout = "us";
         kb_variant = "dvorak";
