@@ -17,6 +17,7 @@
       };
 
       exec-once = [
+        "fcitx5 -d"
         "waybar"
         "blueman-applet"
       ];
