@@ -4,6 +4,9 @@
     enable = true;
     policies.Preferences = {
       "media.ffmpeg.vaapi.enabled" = true;
+      "media.hardware-video-decoding.force-enabled" = true;
+      "media.rdd-ffmpeg.enabled" = true;
+      "widget.dmabuf.force-enabled" = true;
     };
   };
 
