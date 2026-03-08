@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 {
   # NVIDIA proprietary driver
   hardware.nvidia = {
@@ -7,15 +7,20 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
-  # OpenGL
-  hardware.graphics.enable = true;
+  # OpenGL & VA-API hardware video decode
+  hardware.graphics = {
+    enable = true;
+    extraPackages = [ pkgs.nvidia-vaapi-driver ];
+  };
 
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = [ "nvidia" ];
 
-  # Wayland-specific environment variables
+  # Wayland & VA-API environment variables
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
     WLR_NO_HARDWARE_CURSORS = "1";
+    LIBVA_DRIVER_NAME = "nvidia";
+    NVD_BACKEND = "direct";
   };
 }
