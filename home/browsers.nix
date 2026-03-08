@@ -16,5 +16,6 @@
         "--enable-features=VaapiVideoDecodeLinuxGL"
       ];
     })
+    pkgs.vivaldi
   ];
 }

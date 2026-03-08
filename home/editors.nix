@@ -2,6 +2,7 @@
 {
   home.packages = [
     pkgs.code-cursor
+    pkgs.zed-editor
   ];
 
   programs.vscode = {

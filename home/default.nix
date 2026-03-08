@@ -64,6 +64,13 @@ in
     dust
     duf
 
+    # Desktop apps
+    slack
+    obsidian
+    bitwarden-desktop
+    bambu-studio
+    vlc
+
     # Utilities
     yq
     rsync
