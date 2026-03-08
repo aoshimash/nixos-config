@@ -9,7 +9,10 @@ let
   };
 in
 {
-  home.packages = [ pkgs.tmux ];
+  home.packages = [
+    pkgs.tmux
+    pkgs.wl-clipboard
+  ];
 
   home.file.".tmux.conf".source = "${gpakoszTmux}/.tmux.conf";
   home.file.".tmux.conf.local".source = ./dotfiles/tmux/tmux.conf.local;

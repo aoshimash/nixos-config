@@ -12,6 +12,7 @@
     ../../modules/audio.nix
     ../../modules/bluetooth.nix
     ../../modules/ssh.nix
+    ../../modules/xremap.nix
   ];
 
   # Bootloader

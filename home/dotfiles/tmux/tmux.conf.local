@@ -242,6 +242,9 @@ set -g history-limit 100000
 # start with mouse mode enabled
 set -g mouse on
 
+# Wayland clipboard integration (tmux 3.2+)
+set -s copy-command 'wl-copy'
+
 # replace C-b by C-a instead of using both prefixes
 unbind C-a
 
