@@ -2,6 +2,7 @@
 {
   wayland.windowManager.hyprland = {
     enable = true;
+    systemd.enable = false;
     settings = {
       # Monitor layout (left to right): JAPANNEXT 2K → DELL 2K → LG 4K
       monitor = [
