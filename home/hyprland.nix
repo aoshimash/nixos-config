@@ -89,6 +89,8 @@ in
         # Cycle workspaces on active monitor
         "CTRL, Right, workspace, m+1"
         "CTRL, Left, workspace, m-1"
+        ", mouse:276, workspace, m+1" # MX Ergo forward button
+        ", mouse:275, workspace, m-1" # MX Ergo back button
 
         # Delete workspace (close all windows)
         "$mod SHIFT, W, exec, ${closeAllWindows}"
