@@ -43,6 +43,16 @@ in
         "blueman-applet"
       ];
 
+      decoration.blur = {
+        enabled = true;
+        size = 5;
+        passes = 2;
+      };
+
+      layerrule = [
+        "blur on, match:namespace waybar"
+      ];
+
       "$mod" = "SUPER";
       "$terminal" = "ghostty";
 
