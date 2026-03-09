@@ -69,7 +69,8 @@ in
       ];
 
       bind = [
-        "$mod, D, exec, wofi --show drun"
+        "$mod, D, exec, rofi -show drun -show-icons"
+        "$mod, V, exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy"
         "$mod, Return, exec, $terminal"
         "$mod, W, killactive"
         "$mod, M, exit"
