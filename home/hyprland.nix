@@ -5,6 +5,26 @@ let
     hyprctl clients -j | jq -r ".[] | select(.workspace.id == $ws) | .address" \
       | xargs -I{} hyprctl dispatch closewindow address:{}
   '';
+
+  workspaceNoWrap = pkgs.writeShellScript "hypr-workspace-no-wrap" ''
+    direction=$1
+    ws_json=$(hyprctl activeworkspace -j)
+    current=$(echo "$ws_json" | jq '.id')
+    monitor=$(echo "$ws_json" | jq -r '.monitor')
+
+    case "$monitor" in
+      DP-6) first=1; last=7 ;;
+      DP-9) first=2; last=8 ;;
+      DP-8) first=3; last=9 ;;
+      *) exit 0 ;;
+    esac
+
+    if [ "$direction" = "next" ]; then
+      [ "$current" -ne "$last" ] && hyprctl dispatch workspace m+1
+    else
+      [ "$current" -ne "$first" ] && hyprctl dispatch workspace m-1
+    fi
+  '';
 in
 {
   wayland.windowManager.hyprland = {
@@ -97,11 +117,11 @@ in
         "$mod, Tab, cyclenext"
         "$mod SHIFT, Tab, cyclenext, prev"
 
-        # Cycle workspaces on active monitor
-        "CTRL, Right, workspace, m+1"
-        "CTRL, Left, workspace, m-1"
-        ", mouse:276, workspace, m+1" # MX Ergo forward button
-        ", mouse:275, workspace, m-1" # MX Ergo back button
+        # Cycle workspaces on active monitor (no wrap at boundaries)
+        "CTRL, Right, exec, ${workspaceNoWrap} next"
+        "CTRL, Left, exec, ${workspaceNoWrap} prev"
+        ", mouse:276, exec, ${workspaceNoWrap} next" # MX Ergo forward button
+        ", mouse:275, exec, ${workspaceNoWrap} prev" # MX Ergo back button
 
         # Delete workspace (close all windows)
         "$mod SHIFT, W, exec, ${closeAllWindows}"
