@@ -30,6 +30,7 @@ in
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.enable = false;
+    plugins = [ pkgs.hyprlandPlugins.hyprexpo ];
     settings = {
       # Monitor layout (left to right): JAPANNEXT 2K → DELL 2K → LG 4K
       monitor = [
@@ -73,6 +74,12 @@ in
         "blur on, match:namespace waybar"
       ];
 
+      plugin.hyprexpo = {
+        columns = 3;
+        gap_size = 5;
+        workspace_method = "first m+0";
+      };
+
       "$mod" = "SUPER";
       "$terminal" = "ghostty";
 
@@ -112,6 +119,9 @@ in
         "$mod SHIFT, 1, movewindow, mon:DP-6" # left
         "$mod SHIFT, 2, movewindow, mon:DP-9" # center
         "$mod SHIFT, 3, movewindow, mon:DP-8" # right
+
+        # Workspace overview (hyprexpo)
+        "$mod, grave, hyprexpo:expo, toggle"
 
         # Cycle windows on active workspace
         "$mod, Tab, cyclenext"
