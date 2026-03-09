@@ -11,6 +11,7 @@ in
     ./rofi.nix
     ./cliphist.nix
     ./waybar.nix
+    ./wlogout.nix
     ./editors.nix
     ./mako.nix
     ./shell.nix
