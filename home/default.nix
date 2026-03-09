@@ -8,7 +8,8 @@ in
     ./browsers.nix
     ./hyprland.nix
     ./fcitx5.nix
-    ./wofi.nix
+    ./rofi.nix
+    ./cliphist.nix
     ./waybar.nix
     ./editors.nix
     ./mako.nix
