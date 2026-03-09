@@ -10,6 +10,7 @@ in
     ./fcitx5.nix
     ./wofi.nix
     ./waybar.nix
+    ./wlogout.nix
     ./editors.nix
     ./mako.nix
     ./shell.nix

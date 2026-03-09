@@ -111,6 +111,38 @@ in
     };
   };
 
+  # Screen lock
+  programs.hyprlock = {
+    enable = true;
+    settings = {
+      general = {
+        hide_cursor = true;
+      };
+      background = [
+        {
+          monitor = "";
+          path = "screenshot";
+          blur_passes = 3;
+          blur_size = 8;
+        }
+      ];
+      input-field = [
+        {
+          monitor = "";
+          size = "200, 50";
+          outline_thickness = 3;
+          dots_size = 0.33;
+          dots_spacing = 0.15;
+          outer_color = "rgb(137, 180, 250)";
+          inner_color = "rgb(30, 30, 46)";
+          font_color = "rgb(205, 214, 244)";
+          fade_on_empty = true;
+          placeholder_text = "<i>Password...</i>";
+        }
+      ];
+    };
+  };
+
   # Terminal emulator
   programs.ghostty = {
     enable = true;

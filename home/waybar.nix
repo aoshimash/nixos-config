@@ -42,8 +42,19 @@
       #network,
       #pulseaudio,
       #bluetooth,
-      #tray {
+      #tray,
+      #custom-power {
         padding: 0 10px;
+      }
+
+      #custom-power {
+        color: #f38ba8;
+      }
+
+      #custom-power:hover {
+        color: #cdd6f4;
+        background: rgba(243, 139, 168, 0.25);
+        border-radius: 4px;
       }
     '';
 
@@ -60,6 +71,7 @@
           "pulseaudio"
           "bluetooth"
           "tray"
+          "custom/power"
         ];
 
         "hyprland/workspaces" = {
@@ -120,6 +132,12 @@
         tray = {
           icon-size = 18;
           spacing = 10;
+        };
+
+        "custom/power" = {
+          format = "󰐥";
+          tooltip = false;
+          on-click = "wlogout";
         };
       };
     };
