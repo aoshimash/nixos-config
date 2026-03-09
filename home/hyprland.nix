@@ -15,7 +15,7 @@ in
       monitor = [
         "DP-6, 2560x1440@144, 0x0, 1" # JAPANNEXT (left)
         "DP-9, 2560x1440@144, 2560x0, 1" # DELL G3223D (center)
-        "DP-8, 3840x2160@60, 5120x0, 1.5" # LG HDR 4K (right)
+        "DP-8, 3840x2160@60, 5120x0, 1.75" # LG HDR 4K (right)
       ];
 
       # Workspace-to-monitor assignment (round-robin: left → center → right)
