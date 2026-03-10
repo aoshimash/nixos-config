@@ -48,6 +48,9 @@ in
     kubectl
     k9s
     freelens
+    talosctl
+    talhelper
+    fluxcd
 
     # Containers
     ctop
