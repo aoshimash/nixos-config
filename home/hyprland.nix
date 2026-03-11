@@ -61,7 +61,6 @@ in
 
       exec-once = [
         "waybar"
-        "blueman-applet"
       ];
 
       decoration.blur = {

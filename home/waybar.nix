@@ -1,6 +1,9 @@
 { pkgs, ... }:
 {
-  home.packages = [ pkgs.pavucontrol ];
+  home.packages = [
+    pkgs.pavucontrol
+    pkgs.rofi-bluetooth
+  ];
 
   programs.waybar = {
     enable = true;
@@ -159,11 +162,13 @@
         };
 
         bluetooth = {
-          format = "󰂯 {status}";
-          format-connected = "󰂱 {device_alias}";
+          format = "󰂯";
+          format-connected = "󰂱";
           format-disabled = "󰂲";
-          on-click = "blueman-manager";
-          tooltip-format = "{controller_alias}\n{num_connections} connected";
+          on-click = "rofi-bluetooth";
+          on-click-right = "blueman-manager";
+          tooltip-format = "{controller_alias}\n{num_connections} connected\n{device_enumerate}";
+          tooltip-format-enumerate-connected = "- {device_alias}";
         };
 
         tray = {
