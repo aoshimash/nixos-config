@@ -74,6 +74,13 @@ in
         "blur on, match:namespace waybar"
       ];
 
+      windowrulev2 = [
+        "float, class:volume-popup"
+        "noborder, class:volume-popup"
+        "noshadow, class:volume-popup"
+        "move onscreen cursor -150 30, class:volume-popup"
+      ];
+
       # TODO: Re-enable when hyprexpo is updated to match Hyprland 0.54.x in nixpkgs
       # plugin.hyprexpo = {
       #   columns = 3;
