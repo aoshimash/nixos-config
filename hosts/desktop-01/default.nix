@@ -24,6 +24,12 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # Enable flakes and nix command globally
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+
   # Networking
   networking.hostName = "desktop-01";
   networking.networkmanager.enable = true;
