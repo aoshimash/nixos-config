@@ -20,9 +20,9 @@ let
     esac
 
     if [ "$direction" = "next" ]; then
-      [ "$current" -ne "$last" ] && hyprctl dispatch workspace m+1
+      [ "$current" -ne "$last" ] && hyprctl dispatch workspace "$((current + 3))"
     else
-      [ "$current" -ne "$first" ] && hyprctl dispatch workspace m-1
+      [ "$current" -ne "$first" ] && hyprctl dispatch workspace "$((current - 3))"
     fi
   '';
 in
