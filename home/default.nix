@@ -125,6 +125,14 @@ in
     PLAYWRIGHT_BROWSERS_PATH = "${pkgs.playwright-driver.browsers}";
   };
 
+  gtk = {
+    enable = true;
+    iconTheme = {
+      name = "Adwaita";
+      package = pkgs.adwaita-icon-theme;
+    };
+  };
+
   programs.gh = {
     enable = true;
     gitCredentialHelper.enable = true;
