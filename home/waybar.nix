@@ -121,10 +121,11 @@
         };
 
         network = {
-          format-wifi = "  {essid}";
+          format-wifi = "  {signalStrength}%";
           format-ethernet = "󰈀  {ipaddr}";
           format-disconnected = "󰖪  Disconnected";
           tooltip-format = "{ifname}: {ipaddr}/{cidr}";
+          tooltip-format-wifi = "{essid}\n{ifname}: {ipaddr}/{cidr}\nSignal: {signalStrength}%";
         };
 
         "group/audio" = {
