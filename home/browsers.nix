@@ -14,6 +14,7 @@
     (pkgs.google-chrome.override {
       commandLineArgs = [
         "--enable-features=VaapiVideoDecodeLinuxGL"
+        "--disable-background-mode"
       ];
     })
     pkgs.vivaldi
