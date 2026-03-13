@@ -75,6 +75,7 @@ in
     bitwarden-desktop
     bambu-studio
     vlc
+    thunar
 
     # Utilities
     yq

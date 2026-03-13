@@ -52,6 +52,12 @@
     enableZshIntegration = true;
   };
 
+  programs.yazi = {
+    enable = true;
+    enableZshIntegration = true;
+    shellWrapperName = "y";
+  };
+
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
