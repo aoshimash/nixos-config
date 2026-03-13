@@ -40,6 +40,9 @@ in
     gopls
     playwright-driver.browsers
 
+    # JavaScript / TypeScript
+    bun
+
     # Python
     uv
     ruff

@@ -21,6 +21,9 @@
       # aqua - add shim directory to PATH
       export PATH="''${AQUA_ROOT_DIR:-''${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin:$PATH"
 
+      # bun - global bin directory
+      export PATH="$HOME/.cache/.bun/bin:$PATH"
+
       # Emacs keybind
       bindkey -e
 

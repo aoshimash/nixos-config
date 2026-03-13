@@ -3,4 +3,5 @@ result-*
 .direnv
 .worktrees
 .claude/
+.agents/
 firebase-debug.log

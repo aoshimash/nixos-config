@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "skills": {
+    "using-bee": {
+      "source": "nulab/bee",
+      "sourceType": "github",
+      "computedHash": "8bd69dd99bd0b415694cdd5b3a67bcaab8cffe07a1779a0ab4418f09ef531399"
+    }
+  }
+}
