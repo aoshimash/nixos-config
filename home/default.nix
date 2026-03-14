@@ -13,6 +13,7 @@ in
     ./waybar.nix
     ./wlogout.nix
     ./editors.nix
+    ./emacs.nix
     ./mako.nix
     ./shell.nix
     ./tmux.nix
