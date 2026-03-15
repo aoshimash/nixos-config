@@ -61,6 +61,7 @@ in
     # AI CLI
     codex
     gemini-cli
+    sox # for Claude Code /voice command
 
     # Shell productivity (fzf, zoxide, direnv are in shell.nix via programs.*)
     # bat and lazygit are managed via programs.* for theme configuration
