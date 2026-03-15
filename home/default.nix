@@ -72,11 +72,7 @@ in
       A2DP_INDEX=131076
 
       dev_id() {
-        pw-cli list-objects 2>/dev/null \
-          | awk -v dev="$DEVICE_NAME" '
-              /^id [0-9]/ { id = $2 }
-              $0 ~ dev     { print id; exit }
-            ' | tr -d ','
+        wpctl status | awk '/OpenFit.*bluez5/ { match($0, /[0-9]+/); print substr($0, RSTART, RLENGTH); exit }'
       }
 
       case "''${1:-on}" in
