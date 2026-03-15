@@ -206,7 +206,7 @@ in
               modifyColor = "#8be9fd";
               addColor = "#50fa7b";
               errorColor = "#ff5555";
-              highlightcolor = "#ffb86c";
+              highlightColor = "#ffb86c";
               killColor = "#ff5555";
               completedColor = "#6272a4";
             };
