@@ -50,7 +50,6 @@ in
 
     # Kubernetes
     kubectl
-    k9s
     freelens
     talosctl
     talhelper
@@ -64,9 +63,8 @@ in
     gemini-cli
 
     # Shell productivity (fzf, zoxide, direnv are in shell.nix via programs.*)
-    bat
+    # bat and lazygit are managed via programs.* for theme configuration
     eza
-    lazygit
     delta
 
     # System info
@@ -147,5 +145,113 @@ in
     enable = true;
     settings.user.name = "Shuji Aoshima";
     settings.user.email = "47586723+aoshimash@users.noreply.github.com";
+  };
+
+  programs.bat = {
+    enable = true;
+    config.theme = "Dracula";
+  };
+
+  programs.lazygit = {
+    enable = true;
+    settings = {
+      gui.theme = {
+        activeBorderColor = [
+          "#bd93f9"
+          "bold"
+        ];
+        inactiveBorderColor = [ "#6272a4" ];
+        optionsTextColor = [ "#8be9fd" ];
+        selectedLineBgColor = [ "#44475a" ];
+        selectedRangeBgColor = [ "#44475a" ];
+        cherryPickedCommitBgColor = [ "#44475a" ];
+        cherryPickedCommitFgColor = [ "#bd93f9" ];
+        unstagedChangesColor = [ "#ff5555" ];
+        defaultFgColor = [ "#f8f8f2" ];
+        searchingActiveBorderColor = [ "#ffb86c" ];
+      };
+    };
+  };
+
+  programs.k9s = {
+    enable = true;
+    settings = {
+      k9s.ui.skin = "dracula";
+    };
+    skins = {
+      dracula = {
+        k9s = {
+          body = {
+            fgColor = "#f8f8f2";
+            bgColor = "#282a36";
+            logoColor = "#bd93f9";
+          };
+          frame = {
+            border = {
+              fgColor = "#44475a";
+              focusColor = "#bd93f9";
+            };
+            menu = {
+              fgColor = "#f8f8f2";
+              keyColor = "#8be9fd";
+              numKeyColor = "#ffb86c";
+            };
+            crumbs = {
+              fgColor = "#f8f8f2";
+              bgColor = "#44475a";
+              activeColor = "#bd93f9";
+            };
+            status = {
+              newColor = "#50fa7b";
+              modifyColor = "#8be9fd";
+              addColor = "#50fa7b";
+              errorColor = "#ff5555";
+              highlightcolor = "#ffb86c";
+              killColor = "#ff5555";
+              completedColor = "#6272a4";
+            };
+            title = {
+              fgColor = "#f8f8f2";
+              bgColor = "#282a36";
+              highlightColor = "#ffb86c";
+              counterColor = "#8be9fd";
+              filterColor = "#8be9fd";
+            };
+          };
+          views = {
+            table = {
+              fgColor = "#f8f8f2";
+              bgColor = "#282a36";
+              markColor = "#ffb86c";
+              header = {
+                fgColor = "#8be9fd";
+                bgColor = "#282a36";
+                sorterColor = "#ffb86c";
+              };
+            };
+            xray = {
+              fgColor = "#f8f8f2";
+              bgColor = "#282a36";
+              cursorColor = "#44475a";
+              graphicColor = "#bd93f9";
+              showIcons = false;
+            };
+            yaml = {
+              keyColor = "#8be9fd";
+              colonColor = "#f8f8f2";
+              valueColor = "#f8f8f2";
+            };
+            logs = {
+              fgColor = "#f8f8f2";
+              bgColor = "#282a36";
+              indicator = {
+                fgColor = "#f8f8f2";
+                bgColor = "#bd93f9";
+              };
+            };
+          };
+        };
+      };
+    };
   };
 }

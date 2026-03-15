@@ -4,6 +4,6 @@
     enable = true;
     package = pkgs.rofi;
     terminal = "ghostty";
-    theme = ./dotfiles/rofi/nord.rasi;
+    theme = ./dotfiles/rofi/dracula.rasi;
   };
 }
