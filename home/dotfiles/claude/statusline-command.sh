@@ -16,11 +16,16 @@ if [ -n "$_git_dir" ]; then
   esac
 fi
 
-# colors
-green=$(printf '\033[32m')
-yellow=$(printf '\033[33m')
-red=$(printf '\033[31m')
-cyan=$(printf '\033[36m')
+# Nerd Font: git branch icon (U+E0A0)
+branch_icon=$(printf '\xee\x82\xa0')
+
+# colors (Dracula, matching Starship config)
+blue=$(printf '\033[1;34m')   # directory (same as Starship directory.style)
+cyan=$(printf '\033[1;36m')   # git branch (same as Starship git_branch.style)
+yellow=$(printf '\033[1;33m') # git status (same as Starship git_status.style)
+green=$(printf '\033[32m')    # ctx < 50%
+red=$(printf '\033[31m')      # ctx >= 80%
+ctx_yellow=$(printf '\033[33m') # ctx 50-80%
 dim=$(printf '\033[2m')
 reset=$(printf '\033[0m')
 
@@ -28,7 +33,7 @@ reset=$(printf '\033[0m')
 if [ "$context_pct" -ge 80 ] 2>/dev/null; then
   ctx_color="$red"
 elif [ "$context_pct" -ge 50 ] 2>/dev/null; then
-  ctx_color="$yellow"
+  ctx_color="$ctx_yellow"
 else
   ctx_color="$green"
 fi
@@ -38,12 +43,16 @@ if [ -n "$branch" ]; then
   modified=$(git -C "$cwd" --no-optional-locks diff --numstat 2>/dev/null | wc -l | tr -d ' ')
   untracked=$(git -C "$cwd" --no-optional-locks ls-files --others --exclude-standard 2>/dev/null | wc -l | tr -d ' ')
   git_status=""
-  [ "$staged" -gt 0 ] && git_status="${green}+${staged}${reset}"
-  [ "$modified" -gt 0 ] && git_status="${git_status} ${yellow}~${modified}${reset}"
-  [ "$untracked" -gt 0 ] && git_status="${git_status} ${red}?${untracked}${reset}"
-  git_info="${cyan}${branch}${reset}"
-  [ -n "$git_status" ] && git_info="$git_info $git_status"
-  printf "${dim}%s${reset}  %s  ${ctx_color}ctx:%s%%${reset}  ${dim}%s${reset}" "$dir" "$git_info" "$context_pct" "$model"
+  [ "$staged" -gt 0 ] && git_status="${git_status}+"
+  [ "$modified" -gt 0 ] && git_status="${git_status}!"
+  [ "$untracked" -gt 0 ] && git_status="${git_status}?"
+  if [ -n "$git_status" ]; then
+    printf "${blue}%s${reset} on ${cyan}${branch_icon} %s${reset} ${yellow}[%s]${reset}  ${ctx_color}ctx:%s%%${reset}  ${dim}%s${reset}" \
+      "$dir" "$branch" "$git_status" "$context_pct" "$model"
+  else
+    printf "${blue}%s${reset} on ${cyan}${branch_icon} %s${reset}  ${ctx_color}ctx:%s%%${reset}  ${dim}%s${reset}" \
+      "$dir" "$branch" "$context_pct" "$model"
+  fi
 else
-  printf "${dim}%s${reset}  ${ctx_color}ctx:%s%%${reset}  ${dim}%s${reset}" "$dir" "$context_pct" "$model"
+  printf "${blue}%s${reset}  ${ctx_color}ctx:%s%%${reset}  ${dim}%s${reset}" "$dir" "$context_pct" "$model"
 fi
