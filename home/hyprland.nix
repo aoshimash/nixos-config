@@ -180,6 +180,7 @@ in
     settings = {
       font-family = "HackGen35 Console NF";
       font-size = 12;
+      theme = "Dracula";
     };
   };
 }
