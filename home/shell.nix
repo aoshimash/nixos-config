@@ -127,7 +127,7 @@
       hostname.style = "bold pink";
       username.style_user = "bold pink";
 
-      "custom.worktree" = {
+      custom.worktree = {
         command = "git rev-parse --git-dir 2>/dev/null | sed 's|.*/worktrees/||'";
         when = "git rev-parse --git-dir 2>/dev/null | grep -q /worktrees/";
         format = "[⎇ $output]($style) ";
