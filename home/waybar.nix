@@ -16,29 +16,29 @@
       }
 
       window#waybar {
-        background: rgba(30, 30, 46, 0.85);
-        color: #cdd6f4;
+        background: rgba(40, 42, 54, 0.85);
+        color: #f8f8f2;
       }
 
       #workspaces button {
         padding: 0 10px;
         min-width: 24px;
-        color: #a6adc8;
-        background: rgba(69, 71, 90, 0.5);
+        color: #6272a4;
+        background: rgba(68, 71, 90, 0.5);
         margin: 4px 2px;
         border-radius: 4px;
         border: none;
       }
 
       #workspaces button.visible {
-        color: #cdd6f4;
-        border-bottom: 2px solid #585b70;
+        color: #f8f8f2;
+        border-bottom: 2px solid #44475a;
       }
 
       #workspaces button.active {
-        color: #cdd6f4;
-        background: rgba(137, 180, 250, 0.25);
-        border-bottom: 2px solid #89b4fa;
+        color: #f8f8f2;
+        background: rgba(189, 147, 249, 0.25);
+        border-bottom: 2px solid #bd93f9;
       }
 
       #clock,
@@ -58,22 +58,22 @@
       #pulseaudio-slider trough {
         min-height: 8px;
         border-radius: 4px;
-        background-color: rgba(69, 71, 90, 0.5);
+        background-color: rgba(68, 71, 90, 0.5);
       }
 
       #pulseaudio-slider highlight {
         min-height: 8px;
         border-radius: 4px;
-        background-color: #89b4fa;
+        background-color: #bd93f9;
       }
 
       #custom-power {
-        color: #f38ba8;
+        color: #ff5555;
       }
 
       #custom-power:hover {
-        color: #cdd6f4;
-        background: rgba(243, 139, 168, 0.25);
+        color: #f8f8f2;
+        background: rgba(255, 85, 85, 0.25);
         border-radius: 4px;
       }
     '';

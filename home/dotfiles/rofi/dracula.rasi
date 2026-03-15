@@ -1,0 +1,65 @@
+* {
+    dracula-bg:         #282a36;
+    dracula-current:    #44475a;
+    dracula-fg:         #f8f8f2;
+    dracula-comment:    #6272a4;
+    dracula-cyan:       #8be9fd;
+    dracula-purple:     #bd93f9;
+
+    background-color: transparent;
+    text-color:       @dracula-fg;
+}
+
+window {
+    background-color: @dracula-bg;
+    border:           2px;
+    border-color:     @dracula-purple;
+    border-radius:    8px;
+    padding:          0;
+    width:            600px;
+}
+
+mainbox {
+    padding:  0;
+    children: [ inputbar, listview ];
+}
+
+inputbar {
+    background-color: @dracula-current;
+    padding:          8px 12px;
+    children:         [ prompt, entry ];
+    spacing:          8px;
+}
+
+prompt {
+    text-color: @dracula-cyan;
+}
+
+entry {
+    placeholder:       "Search...";
+    placeholder-color: @dracula-comment;
+}
+
+listview {
+    lines:    8;
+    padding:  4px 0;
+    scrollbar: false;
+}
+
+element {
+    padding: 8px 12px;
+}
+
+element selected.normal {
+    background-color: @dracula-current;
+    text-color:       @dracula-cyan;
+}
+
+element-text {
+    text-color: inherit;
+}
+
+element-icon {
+    size: 24px;
+    padding: 0 8px 0 0;
+}

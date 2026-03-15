@@ -154,6 +154,20 @@
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
+    colors = {
+      "bg" = "#282a36";
+      "bg+" = "#44475a";
+      "fg" = "#f8f8f2";
+      "fg+" = "#f8f8f2";
+      "hl" = "#8be9fd";
+      "hl+" = "#8be9fd";
+      "header" = "#8be9fd";
+      "info" = "#bd93f9";
+      "marker" = "#ffb86c";
+      "pointer" = "#ffb86c";
+      "prompt" = "#bd93f9";
+      "spinner" = "#ffb86c";
+    };
   };
 
   programs.yazi = {
