@@ -1,7 +1,8 @@
-{ ... }:
+{ pkgs, ... }:
 {
   programs.emacs = {
     enable = true;
+    package = pkgs.emacs-pgtk;
     extraPackages =
       epkgs: with epkgs; [
         # Theme
@@ -37,6 +38,9 @@
         xclip
       ];
     extraConfig = ''
+      ;; Font: HackGen35 Console NF 12pt (consistent with Ghostty terminal)
+      (set-face-attribute 'default nil :family "HackGen35 Console NF" :height 120)
+
       ;; use-package (built into Emacs 29+)
       (require 'use-package)
 
