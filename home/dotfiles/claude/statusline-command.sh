@@ -7,8 +7,12 @@ dir=$(basename "$cwd")
 # Detect branch handling git worktrees correctly
 # git-dir is worktree-specific (e.g. .git/worktrees/<name> for linked worktrees)
 _git_dir=$(git -C "$cwd" --no-optional-locks rev-parse --git-dir 2>/dev/null)
+is_worktree=0
 if [ -n "$_git_dir" ]; then
   case "$_git_dir" in /*) ;; *) _git_dir="$cwd/$_git_dir" ;; esac
+  case "$_git_dir" in
+    */worktrees/*) is_worktree=1; worktree_name="${_git_dir##*/worktrees/}" ;;
+  esac
   _head=$(cat "$_git_dir/HEAD" 2>/dev/null)
   case "$_head" in
     "ref: refs/heads/"*) branch="${_head#ref: refs/heads/}" ;;
@@ -16,16 +20,18 @@ if [ -n "$_git_dir" ]; then
   esac
 fi
 
-# Nerd Font: git branch icon (U+E0A0)
-branch_icon=$(printf '\xee\x82\xa0')
+# Nerd Font icons
+branch_icon=$(printf '\xee\x82\xa0')  # U+E0A0
+worktree_icon=$(printf '\xe2\x8e\x87') # U+2387 ⎇
 
 # colors (Dracula, matching Starship config)
-blue=$(printf '\033[1;34m')   # directory (same as Starship directory.style)
-cyan=$(printf '\033[1;36m')   # git branch (same as Starship git_branch.style)
-yellow=$(printf '\033[1;33m') # git status (same as Starship git_status.style)
-green=$(printf '\033[32m')    # ctx < 50%
-red=$(printf '\033[31m')      # ctx >= 80%
-ctx_yellow=$(printf '\033[33m') # ctx 50-80%
+blue=$(printf '\033[1;34m')            # directory
+cyan=$(printf '\033[1;36m')            # git branch
+orange=$(printf '\033[38;2;255;184;108m') # worktree branch (Dracula orange #ffb86c)
+yellow=$(printf '\033[1;33m')          # git status
+green=$(printf '\033[32m')             # ctx < 50%
+red=$(printf '\033[31m')               # ctx >= 80%
+ctx_yellow=$(printf '\033[33m')        # ctx 50-80%
 dim=$(printf '\033[2m')
 reset=$(printf '\033[0m')
 
@@ -46,12 +52,21 @@ if [ -n "$branch" ]; then
   [ "$staged" -gt 0 ] && git_status="${git_status}+"
   [ "$modified" -gt 0 ] && git_status="${git_status}!"
   [ "$untracked" -gt 0 ] && git_status="${git_status}?"
-  if [ -n "$git_status" ]; then
-    printf "${blue}%s${reset} on ${cyan}${branch_icon} %s${reset} ${yellow}[%s]${reset}  ${ctx_color}ctx:%s%%${reset}  ${dim}%s${reset}" \
-      "$dir" "$branch" "$git_status" "$context_pct" "$model"
+  if [ "$is_worktree" = "1" ]; then
+    branch_color="$orange"
+    icon="$worktree_icon"
   else
-    printf "${blue}%s${reset} on ${cyan}${branch_icon} %s${reset}  ${ctx_color}ctx:%s%%${reset}  ${dim}%s${reset}" \
-      "$dir" "$branch" "$context_pct" "$model"
+    branch_color="$cyan"
+    icon="$branch_icon"
+  fi
+  wt_suffix=""
+  [ "$is_worktree" = "1" ] && wt_suffix=" ${dim}(${worktree_name})${reset}"
+  if [ -n "$git_status" ]; then
+    printf "${blue}%s${reset} on ${branch_color}${icon} %s${reset}%s ${yellow}[%s]${reset}  ${ctx_color}ctx:%s%%${reset}  ${dim}%s${reset}" \
+      "$dir" "$branch" "$wt_suffix" "$git_status" "$context_pct" "$model"
+  else
+    printf "${blue}%s${reset} on ${branch_color}${icon} %s${reset}%s  ${ctx_color}ctx:%s%%${reset}  ${dim}%s${reset}" \
+      "$dir" "$branch" "$wt_suffix" "$context_pct" "$model"
   fi
 else
   printf "${blue}%s${reset}  ${ctx_color}ctx:%s%%${reset}  ${dim}%s${reset}" "$dir" "$context_pct" "$model"
