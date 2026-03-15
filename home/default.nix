@@ -63,6 +63,43 @@ in
     gemini-cli
     sox # for Claude Code /voice command
 
+    # Switch OpenFit 2+ to HFP for /voice, then back to A2DP when done.
+    # Usage: voice-hfp (switches to HFP and waits until ready)
+    #        voice-hfp off (switches back to A2DP)
+    (pkgs.writeShellScriptBin "voice-hfp" ''
+      DEVICE_NAME="bluez_card.A0_0C_E2_15_0C_49"
+      HFP_INDEX=196865
+      A2DP_INDEX=131076
+
+      dev_id() {
+        pw-cli list-objects 2>/dev/null \
+          | awk -v dev="$DEVICE_NAME" '
+              /^id [0-9]/ { id = $2 }
+              $0 ~ dev     { print id; exit }
+            ' | tr -d ','
+      }
+
+      case "''${1:-on}" in
+        on|hfp)
+          ID=$(dev_id)
+          [ -z "$ID" ] && echo "OpenFit not connected" && exit 1
+          wpctl set-profile "$ID" $HFP_INDEX
+          sleep 3
+          echo "HFP ready — use /voice now"
+          ;;
+        off|a2dp)
+          ID=$(dev_id)
+          [ -z "$ID" ] && echo "OpenFit not connected" && exit 1
+          wpctl set-profile "$ID" $A2DP_INDEX
+          echo "Switched back to A2DP"
+          ;;
+        *)
+          echo "Usage: voice-hfp [on|off]"
+          exit 1
+          ;;
+      esac
+    '')
+
     # Shell productivity (fzf, zoxide, direnv are in shell.nix via programs.*)
     # bat and lazygit are managed via programs.* for theme configuration
     eza
