@@ -62,6 +62,7 @@ in
       exec-once = [
         "waybar"
         "wl-gammarelay-rs run"
+        "wl-gammarelay-applet"
       ];
 
       general = {

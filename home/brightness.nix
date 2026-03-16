@@ -53,6 +53,7 @@ in
 {
   home.packages = [
     pkgs.wl-gammarelay-rs
+    pkgs.wl-gammarelay-applet
     brightnessScript
   ];
 }
