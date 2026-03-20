@@ -18,6 +18,7 @@
     ../../modules/logiops.nix
     ../../modules/scanner.nix
     ../../modules/tailscale.nix
+    ../../modules/nix-ld.nix
   ];
 
   # Bootloader
