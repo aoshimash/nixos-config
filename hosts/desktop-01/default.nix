@@ -82,6 +82,7 @@
     git
     wget
     nodejs
+    gcc
   ];
 
   # Docker

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 let
   aqua = pkgs.callPackage ../pkgs/aqua.nix { };
   freelens = pkgs.callPackage ../pkgs/freelens.nix { };
