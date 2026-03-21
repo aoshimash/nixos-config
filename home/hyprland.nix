@@ -53,6 +53,15 @@ in
         "9, monitor:DP-8"
       ];
 
+      env = [
+        "XCURSOR_THEME,Bibata-Modern-Classic"
+        "XCURSOR_SIZE,20"
+      ];
+
+      cursor = {
+        no_hardware_cursors = true;
+      };
+
       input = {
         kb_layout = "us";
         kb_variant = "dvorak";
