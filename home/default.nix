@@ -128,12 +128,23 @@ in
 
   home.file.".claude/CLAUDE.md".source = ./dotfiles/claude/CLAUDE.md;
 
+  home.activation.playwrightBrowsers = config.lib.dag.entryAfter [ "writeBoundary" ] ''
+    playwright_browsers_store="${pkgs.playwright-driver.browsers}"
+    playwright_browsers_dir="$HOME/.playwright-browsers"
+    mkdir -p "$playwright_browsers_dir"
+    for dir in "$playwright_browsers_store"/*/; do
+      ln -sfn "$dir" "$playwright_browsers_dir/$(basename "$dir")"
+    done
+  '';
+
   home.activation.claudeSettings =
     let
       baseSettings = builtins.toJSON {
         alwaysThinkingEnabled = true;
         env = {
           CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = "1";
+          PLAYWRIGHT_BROWSERS_PATH = "${config.home.homeDirectory}/.playwright-browsers";
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "1";
         };
         teammateMode = "in-process";
         statusLine = {
