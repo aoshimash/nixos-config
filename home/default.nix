@@ -135,6 +135,11 @@ in
     for dir in "$playwright_browsers_store"/*/; do
       ln -sfn "$dir" "$playwright_browsers_dir/$(basename "$dir")"
     done
+    chromium_dir=$(ls -d "$playwright_browsers_dir"/chromium-* 2>/dev/null | head -1)
+    if [ -n "$chromium_dir" ]; then
+      mkdir -p "$playwright_browsers_dir/chromium/chrome-linux64"
+      ln -sfn "$chromium_dir/chrome-linux64/chrome" "$playwright_browsers_dir/chromium/chrome-linux64/chrome"
+    fi
   '';
 
   home.activation.claudeSettings =
