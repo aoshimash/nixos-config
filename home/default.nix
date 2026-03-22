@@ -127,7 +127,15 @@ in
   ];
 
   home.file.".claude/CLAUDE.md".source = ./dotfiles/claude/CLAUDE.md;
-  home.file.".playwright-browsers".source = pkgs.playwright-driver.browsers;
+
+  home.activation.playwrightBrowsers = config.lib.dag.entryAfter [ "writeBoundary" ] ''
+    playwright_browsers_store="${pkgs.playwright-driver.browsers}"
+    playwright_browsers_dir="$HOME/.playwright-browsers"
+    mkdir -p "$playwright_browsers_dir"
+    for dir in "$playwright_browsers_store"/*/; do
+      ln -sfn "$dir" "$playwright_browsers_dir/$(basename "$dir")"
+    done
+  '';
 
   home.activation.claudeSettings =
     let
