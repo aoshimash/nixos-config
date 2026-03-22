@@ -137,47 +137,14 @@ in
     done
   '';
 
-  home.activation.claudeSettings =
-    let
-      baseSettings = builtins.toJSON {
-        alwaysThinkingEnabled = true;
-        env = {
-          CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = "1";
-          PLAYWRIGHT_BROWSERS_PATH = "${config.home.homeDirectory}/.playwright-browsers";
-          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "1";
-        };
-        teammateMode = "in-process";
-        statusLine = {
-          type = "command";
-          command = "sh ${config.home.homeDirectory}/.claude/statusline-command.sh";
-        };
-      };
-    in
-    config.lib.dag.entryAfter [ "writeBoundary" ] ''
-      settings_file="${config.home.homeDirectory}/.claude/settings.json"
-      installed_plugins_file="${config.home.homeDirectory}/.claude/plugins/installed_plugins.json"
-      base_settings='${baseSettings}'
-      mkdir -p "$(dirname "$settings_file")"
-
-      # Build enabledPlugins from installed_plugins.json
-      if [ -f "$installed_plugins_file" ]; then
-        installed_plugins=$(${pkgs.jq}/bin/jq -c '[.plugins // {} | keys[] | {(.): true}] | add // {}' "$installed_plugins_file")
-      else
-        installed_plugins='{}'
-      fi
-
-      # Merge base settings with installed plugins
-      echo "$base_settings" | ${pkgs.jq}/bin/jq --argjson plugins "$installed_plugins" '. + {enabledPlugins: $plugins}' > "$settings_file.tmp"
-      mv "$settings_file.tmp" "$settings_file"
-    '';
-
   home.file.".claude/statusline-command.sh" = {
     source = ./dotfiles/claude/statusline-command.sh;
     executable = true;
   };
 
   home.sessionVariables = {
-    PLAYWRIGHT_BROWSERS_PATH = "${pkgs.playwright-driver.browsers}";
+    PLAYWRIGHT_BROWSERS_PATH = "${config.home.homeDirectory}/.playwright-browsers";
+    PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "1";
   };
 
   home.pointerCursor = {
