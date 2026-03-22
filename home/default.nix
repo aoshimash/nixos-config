@@ -127,6 +127,7 @@ in
   ];
 
   home.file.".claude/CLAUDE.md".source = ./dotfiles/claude/CLAUDE.md;
+  home.file.".playwright-browsers".source = pkgs.playwright-driver.browsers;
 
   home.activation.claudeSettings =
     let
@@ -134,7 +135,7 @@ in
         alwaysThinkingEnabled = true;
         env = {
           CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = "1";
-          PLAYWRIGHT_BROWSERS_PATH = "${pkgs.playwright-driver.browsers}";
+          PLAYWRIGHT_BROWSERS_PATH = "${config.home.homeDirectory}/.playwright-browsers";
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "1";
         };
         teammateMode = "in-process";
