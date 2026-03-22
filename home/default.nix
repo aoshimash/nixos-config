@@ -45,6 +45,7 @@ in
     claude-code
     go
     gopls
+    python3
     playwright-driver.browsers
 
     # JavaScript / TypeScript
