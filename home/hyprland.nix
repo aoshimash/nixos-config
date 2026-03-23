@@ -56,6 +56,9 @@ in
       env = [
         "XCURSOR_THEME,Bibata-Modern-Classic"
         "XCURSOR_SIZE,20"
+        "XMODIFIERS,@im=fcitx"
+        "GTK_IM_MODULE,fcitx"
+        "QT_IM_MODULE,fcitx"
       ];
 
       cursor = {
