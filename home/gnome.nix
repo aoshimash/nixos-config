@@ -56,10 +56,8 @@
       natural-scroll = true;
     };
 
-    # Cursor theme
+    # Interface settings (cursor is managed by home.pointerCursor in default.nix)
     "org/gnome/desktop/interface" = {
-      cursor-theme = "Bibata-Modern-Classic";
-      cursor-size = lib.hm.gvariant.mkInt32 20;
       color-scheme = "default";
     };
 
@@ -116,10 +114,4 @@
     };
   };
 
-  # IBus Mozc (Google Japanese Input equivalent)
-  i18n.inputMethod = {
-    enable = true;
-    type = "ibus";
-    ibus.engines = [ pkgs.ibus-engines.mozc ];
-  };
 }
