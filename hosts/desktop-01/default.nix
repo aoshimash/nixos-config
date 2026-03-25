@@ -6,7 +6,7 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules/nvidia.nix
-    ../../modules/hyprland.nix
+    ../../modules/gnome.nix
     ../../modules/sops.nix
     ../../modules/fonts.nix
     ../../modules/audio.nix

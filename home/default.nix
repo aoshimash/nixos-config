@@ -11,18 +11,11 @@ in
 {
   imports = [
     ./browsers.nix
-    ./hyprland.nix
-    ./fcitx5.nix
-    ./rofi.nix
-    ./cliphist.nix
-    ./waybar.nix
-    ./wlogout.nix
+    ./gnome.nix
     ./editors.nix
     ./emacs.nix
-    ./mako.nix
     ./shell.nix
     ./tmux.nix
-    ./brightness.nix
   ];
   home.username = "aoshima";
   home.homeDirectory = "/home/aoshima";
@@ -118,7 +111,7 @@ in
     bitwarden-desktop
     bambu-studio
     vlc
-    thunar
+    pavucontrol
 
     # Utilities
     yq
