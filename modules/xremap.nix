@@ -2,10 +2,10 @@
 {
   services.xremap = {
     enable = true;
-    withHypr = true;
+    withGnome = true;
     serviceMode = "user";
     userName = "aoshima";
-    # xremap operates at the evdev level (keycodes), but Hyprland applies the
+    # xremap operates at the evdev level (keycodes), but the desktop applies the
     # Dvorak layout AFTER xremap's output. Both input and output keycodes must
     # use Dvorak physical positions (QWERTY keycode names):
     #   'c' = KEY_I, 'v' = KEY_DOT, 'z' = KEY_SLASH, 'a' = KEY_A, 'e' = KEY_D
