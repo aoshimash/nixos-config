@@ -114,4 +114,13 @@
     };
   };
 
+  # Terminal emulator (migrated from hyprland.nix)
+  programs.ghostty = {
+    enable = true;
+    settings = {
+      font-family = "HackGen35 Console NF";
+      font-size = 12;
+      theme = "Dracula";
+    };
+  };
 }

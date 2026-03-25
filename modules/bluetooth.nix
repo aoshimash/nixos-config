@@ -13,7 +13,7 @@
 
   services.blueman.enable = true;
 
-  # Prevent blueman-applet from auto-starting; the Waybar bluetooth module
-  # provides the tray icon with rofi-bluetooth / blueman-manager on click.
+  # Prevent blueman-applet from auto-starting; GNOME's AppIndicator extension
+  # and built-in Bluetooth settings handle Bluetooth UI.
   systemd.user.services.blueman-applet.wantedBy = lib.mkForce [ ];
 }
