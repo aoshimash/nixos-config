@@ -28,6 +28,11 @@ in
   home.homeDirectory = "/home/aoshima";
   home.stateVersion = "25.05";
 
+  catppuccin = {
+    flavor = "mocha";
+    accent = "mauve";
+  };
+
   home.packages = with pkgs; [
     # CLI tools
     curl
@@ -198,6 +203,13 @@ in
       name = "Adwaita";
       package = pkgs.adwaita-icon-theme;
     };
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = 1;
+    };
+  };
+
+  qt = {
+    enable = true;
   };
 
   programs.gh = {
