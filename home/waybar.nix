@@ -5,6 +5,8 @@
     pkgs.rofi-bluetooth
   ];
 
+  catppuccin.waybar.enable = true;
+
   programs.waybar = {
     enable = true;
 
@@ -15,30 +17,20 @@
         min-height: 0;
       }
 
-      window#waybar {
-        background: rgba(40, 42, 54, 0.85);
-        color: #f8f8f2;
-      }
-
       #workspaces button {
         padding: 0 10px;
         min-width: 24px;
-        color: #6272a4;
-        background: rgba(68, 71, 90, 0.5);
         margin: 4px 2px;
         border-radius: 4px;
         border: none;
       }
 
       #workspaces button.visible {
-        color: #f8f8f2;
-        border-bottom: 2px solid #44475a;
+        border-bottom: 2px solid @surface1;
       }
 
       #workspaces button.active {
-        color: #f8f8f2;
-        background: rgba(189, 147, 249, 0.25);
-        border-bottom: 2px solid #bd93f9;
+        border-bottom: 2px solid @mauve;
       }
 
       #clock,
@@ -58,22 +50,20 @@
       #pulseaudio-slider trough {
         min-height: 8px;
         border-radius: 4px;
-        background-color: rgba(68, 71, 90, 0.5);
       }
 
       #pulseaudio-slider highlight {
         min-height: 8px;
         border-radius: 4px;
-        background-color: #bd93f9;
       }
 
       #custom-power {
-        color: #ff5555;
+        color: @red;
       }
 
       #custom-power:hover {
-        color: #f8f8f2;
-        background: rgba(255, 85, 85, 0.25);
+        color: @text;
+        background: alpha(@red, 0.25);
         border-radius: 4px;
       }
     '';
