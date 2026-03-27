@@ -67,7 +67,7 @@ In the `home-manager.users.aoshima` block, add the module:
 home-manager.users.aoshima = {
   imports = [
     nix-index-database.homeModules.nix-index
-    catppuccin.homeManagerModules.catppuccin
+    catppuccin.homeModules.catppuccin
     ./home
   ];
 };
