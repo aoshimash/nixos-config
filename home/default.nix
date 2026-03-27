@@ -199,6 +199,13 @@ in
 
   gtk = {
     enable = true;
+    theme = {
+      name = "catppuccin-mocha-mauve-standard";
+      package = pkgs.catppuccin-gtk.override {
+        accents = [ "mauve" ];
+        variant = "mocha";
+      };
+    };
     iconTheme = {
       name = "Adwaita";
       package = pkgs.adwaita-icon-theme;
@@ -210,6 +217,7 @@ in
 
   qt = {
     enable = true;
+    platformTheme.name = "gtk";
   };
 
   programs.gh = {
