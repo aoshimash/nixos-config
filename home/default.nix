@@ -29,8 +29,12 @@ in
   home.stateVersion = "25.05";
 
   catppuccin = {
+    # Opt-in per program rather than global enable, to allow incremental migration.
     flavor = "mocha";
     accent = "mauve";
+    bat.enable = true;
+    lazygit.enable = true;
+    k9s.enable = true;
   };
 
   home.packages = with pkgs; [
@@ -199,9 +203,8 @@ in
 
   gtk = {
     enable = true;
-    # catppuccin/nix does not provide gtk.catppuccin.enable, so use the
-    # catppuccin-gtk package directly to match global flavor/accent.
-    # Name format: catppuccin-{flavor}-{accent}-{variant}
+    # catppuccin/nix does not provide a gtk theme module (upstream port archived),
+    # so we use catppuccin-gtk package directly. Name: catppuccin-{flavor}-{accent}-{variant}
     theme = {
       name = "catppuccin-mocha-mauve-standard";
       package = pkgs.catppuccin-gtk.override {
@@ -209,10 +212,7 @@ in
         variant = "mocha";
       };
     };
-    iconTheme = {
-      name = "Adwaita";
-      package = pkgs.adwaita-icon-theme;
-    };
+    # iconTheme is managed by catppuccin.gtk.icon (catppuccin-papirus-folders)
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = 1;
     };
@@ -237,109 +237,13 @@ in
 
   programs.bat = {
     enable = true;
-    config.theme = "Dracula";
   };
 
   programs.lazygit = {
     enable = true;
-    settings = {
-      gui.theme = {
-        activeBorderColor = [
-          "#bd93f9"
-          "bold"
-        ];
-        inactiveBorderColor = [ "#6272a4" ];
-        optionsTextColor = [ "#8be9fd" ];
-        selectedLineBgColor = [ "#44475a" ];
-        selectedRangeBgColor = [ "#44475a" ];
-        cherryPickedCommitBgColor = [ "#44475a" ];
-        cherryPickedCommitFgColor = [ "#bd93f9" ];
-        unstagedChangesColor = [ "#ff5555" ];
-        defaultFgColor = [ "#f8f8f2" ];
-        searchingActiveBorderColor = [ "#ffb86c" ];
-      };
-    };
   };
 
   programs.k9s = {
     enable = true;
-    settings = {
-      k9s.ui.skin = "dracula";
-    };
-    skins = {
-      dracula = {
-        k9s = {
-          body = {
-            fgColor = "#f8f8f2";
-            bgColor = "#282a36";
-            logoColor = "#bd93f9";
-          };
-          frame = {
-            border = {
-              fgColor = "#44475a";
-              focusColor = "#bd93f9";
-            };
-            menu = {
-              fgColor = "#f8f8f2";
-              keyColor = "#8be9fd";
-              numKeyColor = "#ffb86c";
-            };
-            crumbs = {
-              fgColor = "#f8f8f2";
-              bgColor = "#44475a";
-              activeColor = "#bd93f9";
-            };
-            status = {
-              newColor = "#50fa7b";
-              modifyColor = "#8be9fd";
-              addColor = "#50fa7b";
-              errorColor = "#ff5555";
-              highlightColor = "#ffb86c";
-              killColor = "#ff5555";
-              completedColor = "#6272a4";
-            };
-            title = {
-              fgColor = "#f8f8f2";
-              bgColor = "#282a36";
-              highlightColor = "#ffb86c";
-              counterColor = "#8be9fd";
-              filterColor = "#8be9fd";
-            };
-          };
-          views = {
-            table = {
-              fgColor = "#f8f8f2";
-              bgColor = "#282a36";
-              markColor = "#ffb86c";
-              header = {
-                fgColor = "#8be9fd";
-                bgColor = "#282a36";
-                sorterColor = "#ffb86c";
-              };
-            };
-            xray = {
-              fgColor = "#f8f8f2";
-              bgColor = "#282a36";
-              cursorColor = "#44475a";
-              graphicColor = "#bd93f9";
-              showIcons = false;
-            };
-            yaml = {
-              keyColor = "#8be9fd";
-              colonColor = "#f8f8f2";
-              valueColor = "#f8f8f2";
-            };
-            logs = {
-              fgColor = "#f8f8f2";
-              bgColor = "#282a36";
-              indicator = {
-                fgColor = "#f8f8f2";
-                bgColor = "#bd93f9";
-              };
-            };
-          };
-        };
-      };
-    };
   };
 }
