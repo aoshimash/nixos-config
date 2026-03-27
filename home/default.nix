@@ -35,6 +35,7 @@ in
     bat.enable = true;
     lazygit.enable = true;
     k9s.enable = true;
+    gtk.icon.enable = true;
   };
 
   home.packages = with pkgs; [
