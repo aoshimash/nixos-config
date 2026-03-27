@@ -19,6 +19,7 @@
       url = "github:xremap/nix-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    catppuccin.url = "github:catppuccin/nix";
   };
 
   outputs =
@@ -28,6 +29,7 @@
       sops-nix,
       nix-index-database,
       xremap-flake,
+      catppuccin,
       ...
     }:
     let
@@ -48,6 +50,7 @@
             home-manager.users.aoshima = {
               imports = [
                 nix-index-database.homeModules.nix-index
+                catppuccin.homeModules.catppuccin
                 ./home
               ];
             };
