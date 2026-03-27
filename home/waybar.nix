@@ -42,6 +42,10 @@
         padding: 0 10px;
       }
 
+      #bluetooth {
+        font-size: 18px;
+      }
+
       #pulseaudio-slider {
         min-width: 120px;
         padding: 0 5px;

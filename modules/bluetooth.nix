@@ -13,7 +13,14 @@
 
   services.blueman.enable = true;
 
-  # Prevent blueman-applet from auto-starting; the Waybar bluetooth module
-  # provides the tray icon with rofi-bluetooth / blueman-manager on click.
-  systemd.user.services.blueman-applet.wantedBy = lib.mkForce [ ];
+  # Prevent blueman from auto-starting via XDG autostart (system file: blueman.desktop);
+  # the Waybar bluetooth module provides the icon with rofi-bluetooth on click.
+  home-manager.sharedModules = [
+    {
+      xdg.configFile."autostart/blueman.desktop".text = ''
+        [Desktop Entry]
+        Hidden=true
+      '';
+    }
+  ];
 }
