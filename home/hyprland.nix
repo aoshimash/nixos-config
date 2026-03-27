@@ -27,6 +27,10 @@ let
   '';
 in
 {
+  catppuccin.hyprland.enable = true;
+  catppuccin.ghostty.enable = true;
+  catppuccin.hyprlock.enable = true;
+
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.enable = false;
@@ -76,11 +80,6 @@ in
         "wl-gammarelay-rs run"
         "wl-gammarelay-applet"
       ];
-
-      general = {
-        "col.active_border" = "rgba(bd93f9ff) rgba(ff79c6ff) 45deg";
-        "col.inactive_border" = "rgba(44475aff)";
-      };
 
       decoration.blur = {
         enabled = true;
@@ -185,9 +184,6 @@ in
           outline_thickness = 3;
           dots_size = 0.33;
           dots_spacing = 0.15;
-          outer_color = "rgb(189, 147, 249)";
-          inner_color = "rgb(40, 42, 54)";
-          font_color = "rgb(248, 248, 242)";
           fade_on_empty = true;
           placeholder_text = "<i>Password...</i>";
         }
@@ -201,7 +197,6 @@ in
     settings = {
       font-family = "HackGen35 Console NF";
       font-size = 12;
-      theme = "Dracula";
     };
   };
 }

@@ -6,7 +6,7 @@
     extraPackages =
       epkgs: with epkgs; [
         # Theme
-        dracula-theme
+        catppuccin-theme
 
         # Project management
         projectile
@@ -45,9 +45,10 @@
       (require 'use-package)
 
       ;; Theme
-      (use-package dracula-theme
+      (use-package catppuccin-theme
         :config
-        (load-theme 'dracula t))
+        (setq catppuccin-flavor 'mocha)
+        (load-theme 'catppuccin t))
 
       ;; Which-key: show available keybindings after prefix
       (use-package which-key
