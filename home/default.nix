@@ -199,6 +199,9 @@ in
 
   gtk = {
     enable = true;
+    # catppuccin/nix does not provide gtk.catppuccin.enable, so use the
+    # catppuccin-gtk package directly to match global flavor/accent.
+    # Name format: catppuccin-{flavor}-{accent}-{variant}
     theme = {
       name = "catppuccin-mocha-mauve-standard";
       package = pkgs.catppuccin-gtk.override {
@@ -217,6 +220,7 @@ in
 
   qt = {
     enable = true;
+    # Inherit Catppuccin colors from GTK theme (catppuccin/nix lacks Qt support)
     platformTheme.name = "gtk";
   };
 
