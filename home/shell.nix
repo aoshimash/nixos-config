@@ -8,6 +8,7 @@
     pkgs.zsh-completions
     pkgs.semgrep
     pkgs.tig
+    pkgs.lsof
   ];
 
   programs.zsh = {
