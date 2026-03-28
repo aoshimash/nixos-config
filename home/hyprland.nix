@@ -99,8 +99,11 @@ in
       # };
 
       windowrule = [
-        "float, match:class ^(io.github.kaii_lb.Overskride)$"
-        "size 500 600, match:class ^(io.github.kaii_lb.Overskride)$"
+        {
+          "match:class" = "^(io\\.github\\.kaii_lb\\.Overskride)$";
+          float = "yes";
+          size = "500 600";
+        }
       ];
 
       "$mod" = "SUPER";
