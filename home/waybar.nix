@@ -2,7 +2,7 @@
 {
   home.packages = [
     pkgs.pavucontrol
-    pkgs.rofi-bluetooth
+    pkgs.overskride
   ];
 
   catppuccin.waybar.enable = true;
@@ -160,7 +160,7 @@
           format = "󰂯";
           format-connected = "󰂱";
           format-disabled = "󰂲";
-          on-click = "rofi-bluetooth";
+          on-click = "overskride";
           on-click-right = "blueman-manager";
           tooltip-format = "{controller_alias}\n{num_connections} connected\n{device_enumerate}";
           tooltip-format-enumerate-connected = "- {device_alias}";

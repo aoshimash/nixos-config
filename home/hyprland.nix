@@ -98,6 +98,11 @@ in
       #   workspace_method = "first m+0";
       # };
 
+      windowrulev2 = [
+        "float, class:io.github.kaii_lb.Overskride"
+        "size 500 600, class:io.github.kaii_lb.Overskride"
+      ];
+
       "$mod" = "SUPER";
       "$terminal" = "ghostty";
 
