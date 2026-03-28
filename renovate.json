@@ -3,12 +3,14 @@
   "extends": ["config:recommended", "helpers:pinGitHubActionDigests"],
   "timezone": "Asia/Tokyo",
   "schedule": ["on friday"],
+  "minimumReleaseAge": "3 days",
   "nix": {
     "enabled": true
   },
   "osvVulnerabilityAlerts": true,
   "vulnerabilityAlerts": {
-    "schedule": ["at any time"]
+    "schedule": ["at any time"],
+    "minimumReleaseAge": null
   },
   "customManagers": [
     {
