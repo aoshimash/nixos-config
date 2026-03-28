@@ -7,6 +7,7 @@
   home.packages = [
     pkgs.zsh-completions
     pkgs.semgrep
+    pkgs.tig
   ];
 
   programs.zsh = {
