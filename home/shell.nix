@@ -4,7 +4,10 @@
   catppuccin.starship.enable = true;
   catppuccin.fzf.enable = true;
 
-  home.packages = [ pkgs.zsh-completions ];
+  home.packages = [
+    pkgs.zsh-completions
+    pkgs.semgrep
+  ];
 
   programs.zsh = {
     enable = true;
