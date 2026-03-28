@@ -100,6 +100,7 @@ in
 
       windowrule = [
         {
+          name = "overskride-popup";
           "match:class" = "^(io\\.github\\.kaii_lb\\.Overskride)$";
           float = "yes";
           size = "500 600";
