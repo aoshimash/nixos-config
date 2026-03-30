@@ -79,6 +79,7 @@ in
         "waybar"
         "wl-gammarelay-rs run"
         "wl-gammarelay-applet"
+        "fcitx5 -D -r"
       ];
 
       decoration.blur = {
