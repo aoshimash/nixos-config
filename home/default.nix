@@ -122,6 +122,13 @@ in
     dust
     duf
 
+    # Wallpaper
+    swww
+    waypaper
+
+    # Thunar thumbnail support
+    tumbler
+
     # Desktop apps
     slack
     obsidian
