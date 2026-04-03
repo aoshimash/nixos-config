@@ -52,7 +52,6 @@ in
 
     # Development tools
     llvmPackages.clang
-    claude-code
     go
     gopls
     python3
@@ -197,6 +196,10 @@ in
     source = ./dotfiles/claude/statusline-command.sh;
     executable = true;
   };
+
+  home.sessionPath = [
+    "$HOME/.local/bin"
+  ];
 
   home.sessionVariables = {
     PLAYWRIGHT_BROWSERS_PATH = "${pkgs.playwright-driver.browsers}";
