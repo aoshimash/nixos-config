@@ -79,7 +79,6 @@ in
         "waybar"
         "wl-gammarelay-rs run"
         "wl-gammarelay-applet"
-        "fcitx5 -d -r"
         "swww-daemon"
         "waypaper --restore"
       ];
