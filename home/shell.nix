@@ -105,7 +105,6 @@ in
 
   home.packages = [
     pkgs.zsh-completions
-    pkgs.semgrep
     pkgs.tig
     pkgs.lsof
     git-delete-merged-branches
