@@ -1,5 +1,10 @@
 { pkgs, ... }:
 {
+  systemd.user.services.fcitx5-daemon.Service = {
+    Restart = "always";
+    RestartSec = 3;
+  };
+
   i18n.inputMethod = {
     enable = true;
     type = "fcitx5";
