@@ -122,7 +122,7 @@ in
     duf
 
     # Wallpaper
-    swww
+    awww
     waypaper
 
     # Thunar thumbnail support

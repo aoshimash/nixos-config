@@ -79,7 +79,7 @@ in
         "waybar"
         "wl-gammarelay-rs run"
         "wl-gammarelay-applet"
-        "swww-daemon"
+        "awww-daemon"
         "waypaper --restore"
       ];
 
